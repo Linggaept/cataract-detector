@@ -42,11 +42,24 @@ def preprocess_image(img):
     img_array /= 255.0
     return img_array
 
-uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "jpeg", "png"])
 
-if uploaded_file is not None:
+# Option to upload image or take a photo
+option = st.radio("Select Input Method:", ("Upload Image", "Use Camera"))
+
+image_input = None
+
+if option == "Upload Image":
+    uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "jpeg", "png"])
+    if uploaded_file is not None:
+        image_input = uploaded_file
+else:
+    camera_file = st.camera_input("Take a picture")
+    if camera_file is not None:
+        image_input = camera_file
+
+if image_input is not None:
     # Display the uploaded image
-    image_display = Image.open(uploaded_file)
+    image_display = Image.open(image_input)
     st.image(image_display, caption='Uploaded Image', use_column_width=True)
     
     if st.button("Predict"):
