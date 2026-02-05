@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+venv/
+.env
+
+# Jupyter Notebooks
+.ipynb_checkpoints
+
+# Mac
+.DS_Store
+
+# Streamlit
+.streamlit/
+
+# android app
+Final_detect
+Dataset/
